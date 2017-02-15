@@ -3,8 +3,40 @@ from datetime import timedelta
 from datetime import date
 
 
+
 def feriadosMoveis():
-    print("oi")
+    FeriadosMoveis = []
+
+    ano = date.today()
+    ano = int(ano.year)
+
+    x = 24
+    y = 5
+    a = ano % 19
+    b = ano % 4
+    c = ano % 7
+    d = ((19 * a + x) % 30)
+    e = ((2 * b + 4 * c + 6 * d + y) % 7)
+
+    if ((d + e) > 9):
+        dia = (d + e - 9)
+        mes = 04
+
+    else:
+        dia = (d + e + 22)
+        mes = 03
+
+    if (dia == 26 and mes == 04):
+        dia = 19
+
+    elif (dia == 25 and mes == 04 and d == 28 and a > 10):
+        dia = 18
+
+    pascoa = str(dia) + '/' + str(mes) + '/' + str(ano)
+    datetime.strptime(pascoa, '%d/%m/%Y').date()
+
+    carnavalTerça = pascoa
+    carnavalTerça = carnavalTerça.timedelta(days=-45)
 
 def feriadosFixos():
     ano = date.today ()
