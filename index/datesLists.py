@@ -3,10 +3,7 @@ from datetime import timedelta
 from datetime import date
 
 
-
-def feriadosMoveis():
-    FeriadosMoveis = []
-
+def calduloDaPascoa():
     ano = date.today()
     ano = int(ano.year)
 
@@ -20,23 +17,37 @@ def feriadosMoveis():
 
     if ((d + e) > 9):
         dia = (d + e - 9)
-        mes = 04
+        mes = 4
 
     else:
         dia = (d + e + 22)
-        mes = 03
+        mes = 3
 
-    if (dia == 26 and mes == 04):
+    if (dia == 26 and mes == 4):
         dia = 19
 
-    elif (dia == 25 and mes == 04 and d == 28 and a > 10):
+    elif (dia == 25 and mes == 4 and d == 28 and a > 10):
         dia = 18
 
     pascoa = str(dia) + '/' + str(mes) + '/' + str(ano)
-    datetime.strptime(pascoa, '%d/%m/%Y').date()
+    pascoa = datetime.strptime(pascoa, '%d/%m/%Y').date()
 
-    carnavalTerça = pascoa
-    carnavalTerça = carnavalTerça.timedelta(days=-45)
+    return pascoa
+
+def feriadosMoveis():
+    FeriadosMoveis = []
+    pascoa = calduloDaPascoa()
+    tercaCarnaval = date.fromordinal(pascoa.toordinal() - 47)
+    sextaSanta = date.fromordinal(pascoa.toordinal() - 2)
+    corpusChristi = date.fromordinal(pascoa.toordinal() + 60)
+
+    FeriadosMoveis.append(tercaCarnaval)
+    FeriadosMoveis.append(sextaSanta)
+    FeriadosMoveis.append(pascoa)
+    FeriadosMoveis.append(corpusChristi)
+
+    return FeriadosMoveis
+
 
 def feriadosFixos():
     ano = date.today ()
@@ -51,16 +62,7 @@ def feriadosFixos():
         listaFeriados.append (datetime.strptime (data, '%d/%m/%Y').date ())
     return listaFeriados
 
-def calcularPrazos(dataFim, diasUteis):
-    dataFimSP = datetime.strptime (dataFim, '%d/%m/%Y').date ()
-    prazoSubmeter = dataFimSP
-    feriado = feriadosFixos ()
-    prazo = 0
-    while (prazo != diasUteis):
-        if ((prazoSubmeter.weekday () != 5 and prazoSubmeter.weekday () != 6) and (prazoSubmeter not in feriado)):
-            prazo = prazo + 1
-        prazoSubmeter += timedelta (days=1)
-    print (prazoSubmeter)
+
 
 
 
