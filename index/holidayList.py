@@ -1,6 +1,5 @@
-from datetime import datetime
-from datetime import timedelta
-from datetime import date
+from datetime import datetime, timedelta, date
+
 
 
 def calduloDaPascoa():
