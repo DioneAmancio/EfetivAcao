@@ -35,12 +35,15 @@ def feriadosMoveis():
     FeriadosMoveis = []
     pascoa = calduloDaPascoa()
     tercaCarnaval = date.fromordinal(pascoa.toordinal() - 47)
+    segundaCarnaval = date.fromordinal(pascoa.toordinal() - 48)
+    quartaCinzas = date.fromordinal(pascoa.toordinal() - 46)
     sextaSanta = date.fromordinal(pascoa.toordinal() - 2)
     corpusChristi = date.fromordinal(pascoa.toordinal() + 60)
 
+    FeriadosMoveis.append(segundaCarnaval)
     FeriadosMoveis.append(tercaCarnaval)
+    FeriadosMoveis.append(quartaCinzas)
     FeriadosMoveis.append(sextaSanta)
-    FeriadosMoveis.append(pascoa)
     FeriadosMoveis.append(corpusChristi)
 
     return FeriadosMoveis
@@ -52,7 +55,8 @@ def feriadosFixos():
     listaFeriados = []
     #feriadosNacionais = ('01/01/ 21/04/ 01/01/ 07/07/ 12/10/ 02/11/ 15/11/ 25/12/ )
     #feriadosEstaduaisEMunicipais = ('19/03/ 25/03/ 15/08/ ')
-    feriados = ('01/01/ 21/04/ 01/01/ 07/07/ 12/10/ 02/11/ 15/11/ 25/12/ 19/03/ 25/03/ 15/08/').split (' ')
+    feriados = ('01/01/ 21/04/ 07/09/ 12/10/ 02/11/ 15/11/ 25/12/ 19/03/ 25/03/ 15/08/').split (' ')
+
     for i in range (len (feriados)):
         data = feriados[i]
         data += ano
@@ -60,31 +64,14 @@ def feriadosFixos():
     return listaFeriados
 
 
-def feriadosPonte(fMoveis, fFixos):
+def feriadosPonte(fPontes):
     feriadoPonte = []
-    feriados = []
-    feriados.append(fMoveis)
-    feriados.append(fFixos)
-    for i in range(len(feriados)):
-        feriados[i] = datetime.strptime(feriados[i], '%d/%m/%Y').date()
-        if feriados[i].weekday() == 1:
-            feriadoPonte.append(date.fromordinal(feriados[i].toordinal() - 1))
-        elif feriados[i].weekday() == 3:
-            feriadoPonte.append(date.fromordinal(feriados[i].toordinal() + 1))
+    for i in range(len(fPontes)):
+        if fPontes[i].weekday() == 1 and (date.fromordinal(fPontes[i].toordinal() - 1) not in fPontes):
+            feriadoPonte.append(date.fromordinal(fPontes[i].toordinal() - 1))
+        if fPontes[i].weekday() == 3 and (date.fromordinal(fPontes[i].toordinal() + 1) not in fPontes):
+            feriadoPonte.append(date.fromordinal(fPontes[i].toordinal() + 1))
 
     return feriadoPonte
 
-fixo = feriadosFixos()
-movel = feriadosMoveis()
-ponte = feriadosPonte(movel, fixo)
-
-
-
-
-
-
-
-
-
-
-
+print(feriadosPonte(feriadosFixos() + feriadosMoveis()))
