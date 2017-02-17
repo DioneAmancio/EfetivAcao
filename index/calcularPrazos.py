@@ -1,3 +1,8 @@
+from datetime import datetime, timedelta
+
+from index.holidayList import feriadosFixos
+
+
 def calcularPrazos(dataFim, diasUteis):
     dataFimSP = datetime.strptime (dataFim, '%d/%m/%Y').date ()
     prazoSubmeter = dataFimSP

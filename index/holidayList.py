@@ -1,7 +1,5 @@
 from datetime import datetime, timedelta, date
 
-
-
 def calduloDaPascoa():
     ano = date.today()
     ano = int(ano.year)
@@ -60,6 +58,31 @@ def feriadosFixos():
         data += ano
         listaFeriados.append (datetime.strptime (data, '%d/%m/%Y').date ())
     return listaFeriados
+
+
+def feriadosPonte(fMoveis, fFixos):
+    feriadoPonte = []
+    feriados = []
+    feriados.append(fMoveis)
+    feriados.append(fFixos)
+    for i in range(len(feriados)):
+        feriados[i] = datetime.strptime(feriados[i], '%d/%m/%Y').date()
+        if feriados[i].weekday() == 1:
+            feriadoPonte.append(date.fromordinal(feriados[i].toordinal() - 1))
+        elif feriados[i].weekday() == 3:
+            feriadoPonte.append(date.fromordinal(feriados[i].toordinal() + 1))
+
+    return feriadoPonte
+
+fixo = feriadosFixos()
+movel = feriadosMoveis()
+ponte = feriadosPonte(movel, fixo)
+
+
+
+
+
+
 
 
 
