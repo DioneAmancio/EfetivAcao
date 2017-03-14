@@ -1,5 +1,6 @@
 from tkinter import *
-from index import processarProjetos
+
+import processarProjetos
 
 
 class IncluirProjeto:

@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 
-from index.holidayList import feriadosFixos
+from holidayList import feriadosFixos
 
 
 def calcularPrazos(dataFim, diasUteis):
