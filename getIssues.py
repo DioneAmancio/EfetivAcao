@@ -5,14 +5,11 @@ options = {
 }
 
 jira = JIRA(options)
-idIssue = 'CLOUD-9469'
-issue = jira.issue(idIssue, expand='changelog')
-changelog = issue.changelog
+projects = jira.projects()
+nameProjecTest = 'loud'
 
-for history in changelog.histories:
-    for item in history.items:
-        dataStart = history.created
-            #print ('Date:' + history.created + ' From:' + item.fromString + ' To:' + item.toString)
+'''def acessarProjetos(projectName):
+    jira = JIRA(options)
+    projects = jira.projects()'''
 
-print("**************")
-print(dataStart)
+
