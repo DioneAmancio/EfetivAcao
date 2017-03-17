@@ -1,10 +1,18 @@
-from selenium import webdriver
+from jira.client import JIRA
 
-driver = webdriver.Firefox()
-driver.get("http://www.google.com")
+options = {
+    'server': 'https://jira.atlassian.com'
+}
 
-elem = driver.find_element_by_name("q")
-elem.send_keys("Hello WebDriver!")
-elem.submit()
+jira = JIRA(options)
+idIssue = 'CLOUD-9469'
+issue = jira.issue(idIssue, expand='changelog')
+changelog = issue.changelog
 
-print(driver.title)
+for history in changelog.histories:
+    for item in history.items:
+        dataStart = history.created
+            #print ('Date:' + history.created + ' From:' + item.fromString + ' To:' + item.toString)
+
+print("**************")
+print(dataStart)
