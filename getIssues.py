@@ -6,10 +6,13 @@ options = {
 
 jira = JIRA(options)
 projects = jira.projects()
-nameProjecTest = 'loud'
 
-'''def acessarProjetos(projectName):
-    jira = JIRA(options)
-    projects = jira.projects()'''
+
+
+i = 0
+print(projects)
+while i< len(projects):
+    print(projects[i])
+    i = i+1
 
 
