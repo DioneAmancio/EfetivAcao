@@ -5,14 +5,27 @@ options = {
 }
 
 jira = JIRA(options)
-projects = jira.projects()
 
 
+def listarProjetos():
+    projects = jira.projects()
+    print(projects)
 
-i = 0
-print(projects)
-while i< len(projects):
-    print(projects[i])
-    i = i+1
+
+def createdDate():
+    idIssue = 'CLOUD-9469'
+    issue = jira.issue(idIssue, expand='changelog')
+    changelog = issue.changelog
+
+    for history in changelog.histories:
+        for item in history.items:
+            dataStart = history.created
+            # print ('Date:' + history.created + ' From:' + item.fromString + ' To:' + item.toString)
+    print(dataStart)
+
+print("Projetos:")
+listarProjetos()
+print("Criada:")
+createdDate()
 
 
