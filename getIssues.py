@@ -31,14 +31,12 @@ def buscarIssue(NomeProjeto):
     listaSiglas = listarSiglaProjetosJira()
     for i in range(len(listaProjetos)):
         if NomeProjeto in listaProjetos[i]:
-            print(listaSiglas[i])
             itemProjeto = 'project='+str(listaSiglas[i])
             issue = jira.search_issues('%s AND issuetype = Bug AND component = "Account Administration" AND created >= 2015-03-02 AND created <= 2015-03-26' %itemProjeto)
-            print(issue[0])
             return str(issue[0])
 
 
-def createdDate(data): 
+def createdDate(data):
     idIssue = data
     jira = JIRA(options)
     issue = jira.issue(idIssue, expand='changelog')
@@ -49,3 +47,9 @@ def createdDate(data):
             dataStart = history.created
             #print ('Date:' + history.created + ' From:' + item.fromString + ' To:' + item.toString)
             print(dataStart)
+
+
+nome = 'loud'
+buscarIssue(nome)
+
+
