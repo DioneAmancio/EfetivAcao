@@ -36,7 +36,7 @@ def buscarIssue(NomeProjeto):
 
 
 def createdDate():
-    idIssue = 'CLOUD-7904'
+    idIssue = 'CLOUD-790'
     issue = jira.issue(idIssue, expand='changelog')
     changelog = issue.changelog
 
