@@ -1,8 +1,8 @@
 from jira.client import JIRA
 
-options = {'server': 'https://10.101.40.70:8443'}
+options = {'server': 'https://10.101.40.180:8443'}
 
-jira = JIRA(options, basic_auth=('login', 'senha'))
+jira = JIRA(options, basic_auth=('dione_amancio', '13801090'))
 
 projects = jira.projects()
 nameProjecTest = 'CLOUD'
