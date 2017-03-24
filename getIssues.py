@@ -46,7 +46,7 @@ def createdDate():
             dataStart = history.created
             #print ('Date:' + history.created + ' From:' + item.fromString + ' To:' + item.toString)
 
-    print(dataStart)
+
 
 
 
