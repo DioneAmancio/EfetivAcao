@@ -25,31 +25,34 @@ def listarNomeProjetosJira():
 
     return projectsName
 
-def buscarIssue(NomeProjeto):
+def buscarIssueRDP(NomeProjeto):
     jira = JIRA(options)
     listaProjetos = listarNomeProjetosJira()
     listaSiglas = listarSiglaProjetosJira()
     for i in range(len(listaProjetos)):
         if NomeProjeto in listaProjetos[i]:
             itemProjeto = 'project='+str(listaSiglas[i])
-            issue = jira.search_issues('%s AND issuetype = Bug AND component = "Account Administration" AND created >= 2015-03-02 AND created <= 2015-03-26' %itemProjeto)
+            issue = jira.search_issues('%s AND issuetype = Bug AND status = Closed ORDER BY created DESC' %itemProjeto) #Falta ajustar a JQL de acordo com as necessidades
             return str(issue[0])
 
 
-def createdDate(data):
-    idIssue = data
+def buscarIssueRAG(NomeProjeto):
     jira = JIRA(options)
-    issue = jira.issue(idIssue, expand='changelog')
-    changelog = issue.changelog
-
-    for history in changelog.histories:
-        for item in history.items:
-            dataStart = history.created
-            #print ('Date:' + history.created + ' From:' + item.fromString + ' To:' + item.toString)
-            print(dataStart)
-
-
-nome = 'loud'
-buscarIssue(nome)
+    listaProjetos = listarNomeProjetosJira()
+    listaSiglas = listarSiglaProjetosJira()
+    for i in range(len(listaProjetos)):
+        if NomeProjeto in listaProjetos[i]:
+            itemProjeto = 'project='+str(listaSiglas[i])
+            issue = jira.search_issues('%s AND issuetype = Bug AND status = Closed ORDER BY created DESC' %itemProjeto) #Falta ajustar a JQL de acordo com as necessidades
+            return str(issue[0])
 
 
+def buscarIssueBHP(NomeProjeto):
+    jira = JIRA(options)
+    listaProjetos = listarNomeProjetosJira()
+    listaSiglas = listarSiglaProjetosJira()
+    for i in range(len(listaProjetos)):
+        if NomeProjeto in listaProjetos[i]:
+            itemProjeto = 'project='+str(listaSiglas[i])
+            issue = jira.search_issues('%s AND issuetype = Bug AND status = Closed ORDER BY created DESC' %itemProjeto) #Falta ajustar a JQL de acordo com as necessidades
+            return str(issue[0])
