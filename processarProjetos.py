@@ -16,7 +16,7 @@ def dataCriacao(idIssue): #retorna a data em que a issue foi criada. Serve para 
     for field_name in issue.raw['fields']:
         if field_name == "created":
             created = issue.raw['fields'][field_name]
-            return created
+            return str(created)
 
 
 def dataRevisao (idIssue): #Retorna a data em que a issue foi resolvida. Serve para saber se a RT foi concluída no prazo.
@@ -27,17 +27,14 @@ def dataRevisao (idIssue): #Retorna a data em que a issue foi resolvida. Serve p
     for field_name in issue.raw['fields']:
         if field_name == "resolutiondate":
             resolutiondate = issue.raw['fields'][field_name]
-            return resolutiondate
+            return str(resolutiondate)
 
 def validarProjetos ( ):
     for i in range(len(listaProjetos)):
-        idIssue = getIssues.buscarIssue(listaProjetos[i])
-        teste1 = dataCriacao(idIssue)
-        teste2 = dataRevisao(idIssue)
-
-
-
-
-
-
+        print(listaProjetos[i])
+        idIssue = getIssues.buscarIssueRDP(listaProjetos[i])
+        datainicio = dataCriacao(idIssue)
+        datarevisado = dataRevisao(idIssue)
+        print(datainicio)
+        print(datarevisado)
 
