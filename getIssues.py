@@ -33,6 +33,7 @@ def buscarIssueRDP(NomeProjeto):
         if NomeProjeto in listaProjetos[i]:
             itemProjeto = 'project='+str(listaSiglas[i])
             issue = jira.search_issues('%s AND issuetype = Bug AND status = Closed ORDER BY created DESC' %itemProjeto) #Falta ajustar a JQL de acordo com as necessidades
+            #print("Field:", field_name, "Value:", issue.raw['fields'][field_name])   --Será necessário para usar na migração
             return str(issue[0])
 
 
