@@ -32,14 +32,6 @@ class projeto:
             self.nome = processarProjetos.listaProjetos[i]
 
     def setarPrazos(self, dataFimIteracao):
-        dataFimSP = datetime.strptime(dataFimIteracao, '%d/%m/%Y').date()
-        prazoSubmeter = dataFimSP
-        feriado = feriadosFixos() + feriadosMoveis() + feriadosPonte(feriadosFixos() + feriadosMoveis())
-        prazo = 1
-        while (prazo < dataFimIteracao):
-            if ((prazoSubmeter.weekday() != 5 and prazoSubmeter.weekday() != 6) and (prazoSubmeter not in feriado)):
-                prazo = prazo + 1
-            prazoSubmeter += timedelta(days=1)
 
 
 
