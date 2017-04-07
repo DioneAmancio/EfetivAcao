@@ -44,7 +44,6 @@ def calcularPrazos(dataFim, diasUteis):
 
 def validarProjetos ( ):
     for i in range(len(listaProjetos)):
-        print(listaProjetos[i])
         idIssue = buscarIssueRDP(listaProjetos[i])
         datainicio = dataCriacao(idIssue)
         datarevisado = dataRevisao(idIssue)

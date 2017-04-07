@@ -73,5 +73,3 @@ def feriadosPonte(fPontes):
             feriadoPonte.append(date.fromordinal(fPontes[i].toordinal() + 1))
 
     return feriadoPonte
-
-print(feriadosPonte(feriadosFixos() + feriadosMoveis()))
