@@ -32,6 +32,7 @@ class projeto:
             self.nome = processarProjetos.listaProjetos[i]
 
     def setarPrazos(self, dataFimIteracao):
+        for
 
 
 
