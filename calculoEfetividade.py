@@ -1,6 +1,6 @@
 import processarProjetos
 from datetime import datetime, timedelta
-from holidayList import *
+from DatasEPrazos import *
 
 EfetividadeProjetos = []
 
@@ -27,12 +27,18 @@ class projeto:
         self.eficienciaSubmissaoBHP = eficienciaSubmissaoBHP
         self.eficaciaSubmissaoBHP = eficaciaSubmissaoBHP
 
-    def setarNome(self):
-        for i in range(len(processarProjetos.listaProjetos)):
+    def setarNome(self, i):
             self.nome = processarProjetos.listaProjetos[i]
 
-    def setarPrazos(self, dataFimIteracao):
-        for
+    def setarPrazos (self, dataFimIteracao):
+        #Calculando data para a submissão do RDP
+        self.prazoSubmissaoRDP = calcularPrazos(dataFimIteracao, 7)
 
+        #Calculando data para a revisão do RDP
+        self.prazoRevisaoRDP = calcularPrazos(self.prazoSubmissaoRDP, 5)
 
+        # Calculando data para a realizar RAG
+        self.prazoRAG = calcularPrazos(self.prazoRevisaoRDP, 5)
 
+        # Calculando data para a submissão da BHP
+        self.prazoSubmissaoBHP = calcularPrazos(self.prazoRAG, 5)

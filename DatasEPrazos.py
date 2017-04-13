@@ -73,3 +73,22 @@ def feriadosPonte(fPontes):
             feriadoPonte.append(date.fromordinal(fPontes[i].toordinal() + 1))
 
     return feriadoPonte
+
+
+
+Feriados = feriadosMoveis() + feriadosFixos() #Inserindo os feriados na lista Feriados
+FeriadosPontes = feriadosPonte(Feriados) #Calculando os feriados pontes com base nos feriados
+Feriados = Feriados + FeriadosPontes #Incluindo em uma unica lista os feriados e feriados pontes
+
+
+def calcularPrazos(dataBase, diasUteis):
+    '''DataBase é a data em que a sprint acabou, e será tomada como base para a contagem dos prazos'''
+    if(type(dataBase) is str):
+        dataFim = datetime.strptime(dataBase, '%d/%m/%Y').date()
+    prazoSubmeter = dataFim
+    prazo = 1
+    while (prazo < diasUteis):
+        if ((prazoSubmeter.weekday() != 5 and prazoSubmeter.weekday() != 6) and (prazoSubmeter not in Feriados)):
+            prazo = prazo + 1
+        prazoSubmeter += timedelta(days=1)
+    return prazoSubmeter

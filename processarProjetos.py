@@ -1,7 +1,7 @@
 from jira.client import JIRA
 from getIssues import *
 from datetime import datetime, timedelta
-from holidayList import *
+from DatasEPrazos import *
 
 listaProjetos = []
 
@@ -31,16 +31,7 @@ def dataRevisao (idIssue): #Retorna a data em que a issue foi resolvida. Serve p
             resolutiondate = issue.raw['fields'][field_name]
             return str(resolutiondate)
 
-def calcularPrazos(dataFim, diasUteis):
-    dataFimSP = datetime.strptime (dataFim, '%d/%m/%Y').date ()
-    prazoSubmeter = dataFimSP
-    feriado = feriadosFixos () + feriadosMoveis() + feriadosPonte(feriadosFixos()+feriadosMoveis())
-    prazo = 1
-    while (prazo < diasUteis):
-        if ((prazoSubmeter.weekday () != 5 and prazoSubmeter.weekday () != 6) and (prazoSubmeter not in feriado)):
-            prazo = prazo + 1
-        prazoSubmeter += timedelta (days=1)
-    print (prazoSubmeter)
+
 
 def validarProjetos ( ):
     for i in range(len(listaProjetos)):
