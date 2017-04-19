@@ -1,4 +1,5 @@
 import processarProjetos
+import getIssues
 from datetime import datetime, timedelta
 from DatasEPrazos import *
 
@@ -42,3 +43,11 @@ class projeto:
 
         # Calculando data para a submissão da BHP
         self.prazoSubmissaoBHP = calcularPrazos(self.prazoRAG, 5)
+
+    def setarDataSubmissaoRDP ():
+        IdIssue = getIssues.buscarIssueRDP()
+
+
+
+
+

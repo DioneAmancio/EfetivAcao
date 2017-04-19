@@ -83,12 +83,17 @@ Feriados = Feriados + FeriadosPontes #Incluindo em uma unica lista os feriados e
 
 def calcularPrazos(dataBase, diasUteis):
     '''DataBase é a data em que a sprint acabou, e será tomada como base para a contagem dos prazos'''
-    if(type(dataBase) is str):
+    if(type(dataBase) == str): #verifica se a data passada como parametro é do tio String, se for, então converte a mesma para o tipo data
         dataFim = datetime.strptime(dataBase, '%d/%m/%Y').date()
-    prazoSubmeter = dataFim
+        prazoSubmeter = dataFim
+    else: #caso a data passada como parametro seja do tipo data,  mesma será atribuíuda a variável prazoSubmeter se a necessidade de conversão alguma
+        prazoSubmeter = dataBase
     prazo = 1
     while (prazo < diasUteis):
         if ((prazoSubmeter.weekday() != 5 and prazoSubmeter.weekday() != 6) and (prazoSubmeter not in Feriados)):
             prazo = prazo + 1
         prazoSubmeter += timedelta(days=1)
     return prazoSubmeter
+
+
+
