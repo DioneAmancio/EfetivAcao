@@ -44,7 +44,7 @@ class projeto:
         # Calculando data para a submissão da BHP
         self.prazoSubmissaoBHP = calcularPrazos(self.prazoRAG, 5)
 
-    def setarDataSubmissaoRDP ():
+    def setarDataSubmissaoRDP :
         IdIssue = getIssues.buscarIssueRDP()
 
 
